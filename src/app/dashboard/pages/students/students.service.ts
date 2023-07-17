@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { User } from './models/user.model';
+import { Student } from './models/student.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class StudentService {
 
-  private users: User[] = [
+  private users: Student[] = [
     {
       id: 1,
       name: 'Marcos',
       surname: 'Rodriguez',
+      age: 30,
       email: 'mark@mail.com',
       password: '123456',
     },
@@ -18,6 +19,7 @@ export class UserService {
       id: 2,
       name: 'Julian',
       surname: 'Perez',
+      age: 30,
       email: 'jperez@mail.com',
       password: '123456',
     },
@@ -25,14 +27,14 @@ export class UserService {
 
   constructor() {}
 
-  getUsers(): User[] {
+  getStudents(): Student[] {
     return this.users;
   }
 
-   createuser(user: User): void {}
+   createStudent(user: Student): void {}
 
-   deleteuserbyid(user: User): void {}
+   deleteStudent(user: Student): void {}
 
-   updateuserbyid(user: User): void {}
+   updateStudent(user: Student): void {}
 
 }
