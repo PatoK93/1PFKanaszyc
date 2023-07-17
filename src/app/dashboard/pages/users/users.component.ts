@@ -12,15 +12,28 @@ import { Subject} from 'rxjs';
 })
 export class UsersComponent implements OnDestroy {
 
-  public users: User[] = [];
+  public users: User[] = [
+    {
+      id: 1,
+      name: 'Marcos',
+      surname: 'Rodriguez',
+      email: 'mark@mail.com',
+      password: '123456',
+    },
+    {
+      id: 2,
+      name: 'Julian',
+      surname: 'Perez',
+      email: 'jperez@mail.com',
+      password: '123456',
+    },
+  ];
   public destroyed = new Subject<boolean>();
 
   constructor(
     private matDialog: MatDialog,
     private userService: UserService,
-  ) {
-    this.users = this.userService.getUsers();
-  }
+  ) {}
 
   ngOnDestroy(): void {
     this.destroyed.next(true);
@@ -36,13 +49,7 @@ export class UsersComponent implements OnDestroy {
       .subscribe({
         next: (v) => {
           if (v) {
-            this.userService.createuser({
-              id: this.users.length + 1,
-              name: v.name,
-              surname: v.surname,
-              email: v.email,
-              password: v.password
-            });
+           this.userService.addUser(v, this.users);
           }
         },
       });
@@ -50,7 +57,7 @@ export class UsersComponent implements OnDestroy {
 
   onDeleteUser(userToDelete: User): void {
     if (confirm(`¿Está seguro de eliminar a ${userToDelete.name}?`)) {
-      this.users = this.users.filter((u) => u.id !== userToDelete.id);
+      this.userService.deleteUser(userToDelete, this.users);
     }
   }
 
@@ -67,13 +74,10 @@ export class UsersComponent implements OnDestroy {
       .subscribe({
         next: (userUpdated) => {
           if (userUpdated) {
-            this.users = this.users.map((user) => {
-              return user.id === userToEdit.id
-                ? { ...user, ...userUpdated } // VERDADERO
-                : user; // FALSO ;
-            });
+            this.userService.updateUser(userUpdated, this.users);
+            }
           }
-        },
-      });
+        });
   }
+
 }
