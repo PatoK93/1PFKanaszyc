@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Student } from '../../models/student.model';
 
@@ -10,14 +10,11 @@ import { Student } from '../../models/student.model';
 })
 export class StudentFormDialogComponent {
 
-  nameControl = new FormControl<string | null>(null, [
-    Validators.required,
-    Validators.minLength(2)
-  ]);
-  surnameControl = new FormControl<string | null>(null, [Validators.required]);
-  ageControl = new FormControl<number | null>(null, [Validators.required]);
-  emailControl = new FormControl<string | null>(null, [Validators.required]);
-  passwordControl = new FormControl<string | null>(null, [Validators.required]);
+  nameControl = new FormControl<string | null>(null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]);
+  surnameControl = new FormControl<string | null>(null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]);
+  ageControl = new FormControl<number | null>(null, [Validators.required, Validators.min(18), Validators.max(100)]);
+  emailControl = new FormControl<string | null>(null, [Validators.required, Validators.email]);
+  passwordControl = new FormControl<string | null>(null, [Validators.required, Validators.minLength(8), Validators.maxLength(15)]);
 
   studentForm = new FormGroup({
     name: this.nameControl,

@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-
 @Pipe({
   name: 'controlErrorMessage'
 })
@@ -10,7 +9,10 @@ export class ControlErrorMessagePipe implements PipeTransform {
     const errorMessages: Record<string, string> = {
       required: 'Este campo es requerido',
       email: 'Debe ser un email valido',
-      minlength: 'El largo no cumple con el requerido'
+      minlength: 'El largo no cumple con el minimo requerido',
+      maxlength: 'El largo no cumple con el maximo requerido',
+      max: 'Numero demasiado grande',
+      min: 'Numero demasiado chico'
     };
 
     return errorMessages[error.key] || 'Campo invalido';

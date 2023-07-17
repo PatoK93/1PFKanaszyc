@@ -1,5 +1,4 @@
-1) Pasar la logica de servicio del componente usuario a su servicio respectivo.
-2) Directiva personalizada para que las cabeceras o títulos tengan letra tamaño 20.
-3) Mejorar los validaciones tanto en crear y editar alumno.
-4) Quitar pipes o directivas innecesarios.
-5) Opcional: tomar los datos de un json local.
+1) Mejorar los validaciones tanto en crear y editar alumno.
+2) Quitar pipes o directivas innecesarios.
+3) Directiva personalizada para que las cabeceras o títulos tengan letra tamaño 20.
+4) Opcional: tomar los datos de un json local.

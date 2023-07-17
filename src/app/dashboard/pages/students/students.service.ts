@@ -31,10 +31,6 @@ export class StudentService {
     return this.users;
   }
 
-   createStudent(user: Student): void {}
-
-   deleteStudent(user: Student): void {}
-
-   updateStudent(user: Student): void {}
+  //No puedo pasar los metodos del CRUD aqui, ya que no me renderiza la tabla nuevamente. Creo que es algo del lifeCycle de Angular
 
 }
