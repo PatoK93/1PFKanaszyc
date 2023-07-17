@@ -1,0 +1,8 @@
+1) Pasar de usuario a alumno.
+2) Pasar la logica de servicio del componente usuario a su servicio respectivo.
+3) Directiva personalizada para que las cabeceras o títulos tengan letra tamaño 20.
+4) Cambiar titulo de Inicio del NavBar (poner algo representativo al dashboard).
+5) Utilizar campos acorde a alumnos.
+6) Mejorar los validaciones tanto en crear y editar alumno.
+7) Quitar pipes o directivas innecesarios.
+8) Opcional: tomar los datos de un json local.
