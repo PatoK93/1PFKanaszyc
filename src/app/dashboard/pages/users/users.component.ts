@@ -1,9 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFormDialogComponent } from './components/user-form-dialog/user-form-dialog.component';
 import { User } from './models/user.model';
 import { UserService } from './user.service';
-import { Subject} from 'rxjs';
+import { Observable, Subject, Subscription, map, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -12,28 +12,16 @@ import { Subject} from 'rxjs';
 })
 export class UsersComponent implements OnDestroy {
 
-  public users: User[] = [
-    {
-      id: 1,
-      name: 'Marcos',
-      surname: 'Rodriguez',
-      email: 'mark@mail.com',
-      password: '123456',
-    },
-    {
-      id: 2,
-      name: 'Julian',
-      surname: 'Perez',
-      email: 'jperez@mail.com',
-      password: '123456',
-    },
-  ];
+  public users: User[] = [];
+
   public destroyed = new Subject<boolean>();
 
   constructor(
     private matDialog: MatDialog,
     private userService: UserService,
-  ) {}
+  ) {
+    this.users = this.userService.getUsers();
+  }
 
   ngOnDestroy(): void {
     this.destroyed.next(true);
@@ -49,7 +37,17 @@ export class UsersComponent implements OnDestroy {
       .subscribe({
         next: (v) => {
           if (v) {
-           this.userService.addUser(v, this.users);
+            let newUser = {
+              id: this.users.length + 1,
+              name: v.name,
+              email: v.email,
+              password: v.password,
+              surname: v.surname,
+            };
+            this.users = [
+              ...this.users,
+              newUser,
+            ]
           }
         },
       });
@@ -57,7 +55,7 @@ export class UsersComponent implements OnDestroy {
 
   onDeleteUser(userToDelete: User): void {
     if (confirm(`¿Está seguro de eliminar a ${userToDelete.name}?`)) {
-      this.userService.deleteUser(userToDelete, this.users);
+      this.users = this.users.filter((u) => u.id !== userToDelete.id);
     }
   }
 
@@ -74,10 +72,13 @@ export class UsersComponent implements OnDestroy {
       .subscribe({
         next: (userUpdated) => {
           if (userUpdated) {
-            this.userService.updateUser(userUpdated, this.users);
-            }
+            this.users = this.users.map((user) => {
+              return user.id === userToEdit.id
+                ? { ...user, ...userUpdated }
+                : user;
+            });
           }
-        });
+        },
+      });
   }
-
 }
