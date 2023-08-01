@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from '../features/dashboard/dashboard.component';
-import { AuthComponent } from '../features/auth/auth.component';
-import { LoginComponent } from '../features/auth/pages/login/login.component';
-import { CoursesComponent } from '../features/dashboard/pages/products/products.component';
-import { StudentsComponent } from '../features/dashboard/pages/students/students.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { AuthComponent } from './features/auth/auth.component';
+import { LoginComponent } from './features/auth/pages/login/login.component';
+import { StudentsComponent } from './features/dashboard/pages/students/students.component';
+import { CoursesComponent } from './features/dashboard/pages/courses/courses.component';
 
 const routes: Routes = [
   {
@@ -13,12 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: 'students',
-        children: [
-          {
-            path: '',
-            component: StudentsComponent,
-          },
-        ]
+        component: StudentsComponent,
       },
       {
         path: 'courses',
@@ -26,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'home',
+        redirectTo: 'dashboard',
       }
     ],
   },

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CreateStudentData, Student, UpdateStudentData } from './models/student.model';
+import { CreateStudentData, Student, UpdateStudentData } from '../models/student.model';
 import { BehaviorSubject, Observable, map, of, take } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class StudentService {
       name: 'Marcos',
       surname: 'Rodriguez',
       age: 30,
-      email: 'mark@mail.com',
+      email: 'mrodriguez@mail.com',
       password: '123456',
     },
     {

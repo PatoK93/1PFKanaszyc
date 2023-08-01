@@ -41,6 +41,7 @@ export class StudentFormDialogComponent {
   onSubmit(): void {
     if (this.studentForm.invalid) {
       this.studentForm.markAllAsTouched();
+      return;
     } else {
       this.dialogRef.close(this.studentForm.value);
     }

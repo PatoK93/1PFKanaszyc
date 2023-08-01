@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentFormDialogComponent } from './components/student-form-dialog/student-form-dialog.component';
 import { Student } from './models/student.model';
-import { StudentService } from './students.service';
+import { StudentService } from './services/students.service';
 import { Observable, Subject} from 'rxjs';
 
 @Component({
