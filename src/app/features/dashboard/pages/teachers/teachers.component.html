@@ -1,0 +1,12 @@
+<div class="mb-5">
+  <button (click)="onCreateTeacher()" mat-flat-button color="primary" type="button">
+    <mat-icon>add</mat-icon>
+    Crear Profesor
+  </button>
+</div>
+
+<app-teachers-table
+  [dataSource]="(teachers | async) || []"
+  (deleteTeacher)="onDeleteTeacher($event)"
+  (editTeacher)="onEditTeacher($event)"
+></app-teachers-table>

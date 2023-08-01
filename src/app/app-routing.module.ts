@@ -5,6 +5,7 @@ import { AuthComponent } from './features/auth/auth.component';
 import { LoginComponent } from './features/auth/pages/login/login.component';
 import { StudentsComponent } from './features/dashboard/pages/students/students.component';
 import { CoursesComponent } from './features/dashboard/pages/courses/courses.component';
+import { TeachersComponent } from './features/dashboard/pages/teachers/teachers.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'courses',
         component: CoursesComponent,
+      },
+      {
+        path: 'teachers',
+        component: TeachersComponent,
       },
       {
         path: '**',
