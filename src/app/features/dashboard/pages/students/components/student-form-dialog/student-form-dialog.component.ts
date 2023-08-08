@@ -9,6 +9,7 @@ import { Student } from '../../models/student.model';
   styleUrls: ['./student-form-dialog.component.scss'],
 })
 export class StudentFormDialogComponent {
+  
   editingStudent?: Student;
 
   nameControl = new FormControl<string | null>(null, [Validators.required, Validators.minLength(2), Validators.maxLength(30)]);

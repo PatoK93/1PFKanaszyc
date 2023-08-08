@@ -13,14 +13,15 @@ import { CoursesFormDialogComponent } from './components/course-form-dialog/cour
 export class CoursesComponent implements OnDestroy {
 
   public courses: Observable<Course[]>;
-
   public destroyed = new Subject<boolean>();
+  public isLoading$: Observable<boolean>;
 
   constructor(
     private matDialog: MatDialog,
     private courseService: CoursesService,
   ) {
     this.courseService.loadCourses();
+    this.isLoading$ = this.courseService.isLoading$;
     this.courses = this.courseService.getCourses();
   }
 

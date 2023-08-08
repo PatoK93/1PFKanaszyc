@@ -5,11 +5,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { StudentFormDialogComponent } from './components/student-form-dialog/student-form-dialog.component';
 import { StudentsTableComponent } from './components/students-table/students-table.component';
 import { RouterModule } from '@angular/router';
+import { StudentsRoutingModule } from './students-routing.module';
 
 @NgModule({
   declarations: [StudentsComponent, StudentFormDialogComponent, StudentsTableComponent],
-  imports: [CommonModule, SharedModule, RouterModule],
+  imports: [CommonModule, SharedModule, RouterModule, StudentsRoutingModule],
   exports: [StudentsComponent],
-  providers: [],
 })
 export class StudentsModule {}

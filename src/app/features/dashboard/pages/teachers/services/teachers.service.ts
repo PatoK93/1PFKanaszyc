@@ -1,48 +1,36 @@
 import { Injectable } from '@angular/core';
 import { CreateTeacherData, Teacher, UpdateTeacherData } from '../models/teacher.model';
-import { BehaviorSubject, Observable, map, of, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap, take } from 'rxjs';
+import { NotifierService } from 'src/app/core/services/notifier.service';
+import { HttpClient } from '@angular/common/http';
+import { generateRandomString } from '../../../../../shared/utils/helpers';
+import { environment } from '../../../../../../../src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TeacherService {
 
-  private teachersDB: Observable<Teacher[]> = of([
-    {
-      id: 1,
-      name: 'Marcos',
-      surname: 'Rodriguez',
-      age: 30,
-      email: 'mrodriguez@mail.com',
-      password: '123456',
-    },
-    {
-      id: 2,
-      name: 'Julian',
-      surname: 'Perez',
-      age: 30,
-      email: 'jperez@mail.com',
-      password: '123456',
-    },
-    {
-      id: 3,
-      name: 'Marcelo',
-      surname: 'Alvarez',
-      age: 30,
-      email: 'malvarez@mail.com',
-      password: '123456',
-    },
-  ]);
-
   private _teacher$ = new BehaviorSubject<Teacher[]>([]);
   private teacher$ = this._teacher$.asObservable();
+  private _isLoading$ = new BehaviorSubject(false);
+  public isLoading$ = this._isLoading$.asObservable();
 
-  constructor() {}
+  constructor(private notifier: NotifierService, private httpClient: HttpClient) {}
 
   loadTeachers(): void {
-    this.teachersDB.subscribe({
-      next: (teachersFromDb) => this._teacher$.next(teachersFromDb),
-    });
+    this._isLoading$.next(true);
+    this.httpClient.get<Teacher[]>(environment.baseApiUrl + '/teachers').subscribe({
+      next: (response) => {
+        this._teacher$.next(response);
+      },
+      error: () => {
+        this.notifier.showError('Error al cargar los profesores');
+      },
+      complete: () => {
+        this._isLoading$.next(false);
+      }
+    })
   }
 
   getTeachers(): Observable<Teacher[]> {
@@ -56,35 +44,34 @@ export class TeacherService {
     )
   }
 
-  createTeacher(teacher: CreateTeacherData): void {
-    this.teacher$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._teacher$.next([
-          ...arrayActual,
-          { ...teacher, id: arrayActual.length + 1 },
-        ]);
-      },
-    });
+  createTeacher(payload: CreateTeacherData): void {
+    const token = generateRandomString(20);
+    this.httpClient.post<Teacher>(environment.baseApiUrl  + '/teachers', { ...payload, token })
+      .pipe(
+        mergeMap((teacherCreate) => this.teacher$.pipe(
+          take(1),
+          map((arrayActual) => [...arrayActual, teacherCreate])
+          )
+        )
+      )
+      .subscribe({
+        next: (arrayActualizado) => {
+          this._teacher$.next(arrayActualizado);
+        }
+      })
   }
 
   updateTeacherById(id: number, profesorActualizado: UpdateTeacherData): void {
-    this.teacher$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._teacher$.next(
-          arrayActual.map((t) =>
-            t.id === id ? { ...t, ...profesorActualizado } : t
-          )
-        );
-      },
-    });
+    this.httpClient.put(environment.baseApiUrl + '/teachers/' + id, profesorActualizado).subscribe({
+      next: () => this.loadTeachers(),
+    })
   }
 
   deleteTeacherById(id: number): void {
-    this.teacher$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._teacher$.next(arrayActual.filter((t) => t.id !== id));
-      },
-    });
+    this.httpClient.delete(environment.baseApiUrl + '/teachers/' + id)
+      .pipe().subscribe({
+        next: () => this.loadTeachers(),
+      })
   }
 
 }

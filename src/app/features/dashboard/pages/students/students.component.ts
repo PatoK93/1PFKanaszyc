@@ -13,14 +13,15 @@ import { Observable, Subject} from 'rxjs';
 export class StudentsComponent implements OnDestroy {
 
   public students: Observable<Student[]>;
-
   public destroyed = new Subject<boolean>();
+  public isLoading$: Observable<boolean>;
 
   constructor(
     private matDialog: MatDialog,
     private studentService: StudentService,
   ) {
     this.studentService.loadStudents();
+    this.isLoading$ = this.studentService.isLoading$;
     this.students = this.studentService.getStudents();
   }
 

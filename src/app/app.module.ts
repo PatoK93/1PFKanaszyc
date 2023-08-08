@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from './features/dashboard/dashboard.module';
 import { MatCardModule } from '@angular/material/card';
 import { AuthModule } from './features/auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AuthModule } from './features/auth/auth.module';
     BrowserAnimationsModule,
     DashboardModule,
     AuthModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

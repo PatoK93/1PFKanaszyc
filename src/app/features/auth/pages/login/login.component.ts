@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../auth.services';
 
 @Component({
   selector: 'app-login',
@@ -8,21 +9,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
 
-  emailControl = new FormControl<string | null>(null, [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.email]);
-  passwordControl = new FormControl<string | null>(null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]);
+  public emailControl = new FormControl(null, [Validators.required, Validators.email, Validators.maxLength(30)]);
+  public passwordControl = new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(30)]);
 
-  loginForm = new FormGroup({
+  public loginForm = new FormGroup({
     email: this.emailControl,
     password: this.passwordControl,
   });
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
-  onSubmit(): void {
+  login(): void {
+
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
+    } else {
+      this.authService.login(this.loginForm.getRawValue())
     }
+
   }
-
-
 }

@@ -1,36 +1,36 @@
 import { Injectable } from '@angular/core';
 import { CreateCourseData, Course, UpdateCourseData } from '../models/course.model';
-import { BehaviorSubject, Observable, map, of, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap, take } from 'rxjs';
+import { NotifierService } from 'src/app/core/services/notifier.service';
+import { HttpClient } from '@angular/common/http';
+import { generateRandomString } from '../../../../../shared/utils/helpers';
+import { environment } from '../../../../../../../src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoursesService {
 
-  private courseDB: Observable<Course[]> = of([
-    {
-      id: 1,
-      courseName: 'Biologia',
-    },
-    {
-      id: 2,
-      courseName: 'Matematica',
-    },
-    {
-      id: 3,
-      courseName: 'Geografia',
-    },
-  ]);
-
   private _courses$ = new BehaviorSubject<Course[]>([]);
   private courses$ = this._courses$.asObservable();
+  private _isLoading$ = new BehaviorSubject(false);
+  public isLoading$ = this._isLoading$.asObservable();
 
-  constructor() {}
+  constructor(private notifier: NotifierService, private httpClient: HttpClient) {}
 
   loadCourses(): void {
-    this.courseDB.subscribe({
-      next: (coursesFromDb) => this._courses$.next(coursesFromDb),
-    });
+    this._isLoading$.next(true);
+    this.httpClient.get<Course[]>(environment.baseApiUrl + '/courses').subscribe({
+      next: (response) => {
+        this._courses$.next(response);
+      },
+      error: () => {
+        this.notifier.showError('Error al cargar los cursos');
+      },
+      complete: () => {
+        this._isLoading$.next(false);
+      }
+    })
   }
 
   getCourses(): Observable<Course[]> {
@@ -44,35 +44,34 @@ export class CoursesService {
     )
   }
 
-  createCourse(course: CreateCourseData): void {
-    this.courses$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._courses$.next([
-          ...arrayActual,
-          { ...course, id: arrayActual.length + 1 },
-        ]);
-      },
-    });
+  createCourse(payload: CreateCourseData): void {
+    const token = generateRandomString(20);
+    this.httpClient.post<Course>(environment.baseApiUrl  + '/courses', { ...payload, token })
+      .pipe(
+        mergeMap((courseCreate) => this.courses$.pipe(
+          take(1),
+          map((arrayActual) => [...arrayActual, courseCreate])
+          )
+        )
+      )
+      .subscribe({
+        next: (arrayActualizado) => {
+          this._courses$.next(arrayActualizado);
+        }
+      })
   }
 
   updateCourseById(id: number, cursoActualizado: UpdateCourseData): void {
-    this.courses$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._courses$.next(
-          arrayActual.map((c) =>
-            c.id === id ? { ...c, ...cursoActualizado } : c
-          )
-        );
-      },
-    });
+    this.httpClient.put(environment.baseApiUrl + '/courses/' + id, cursoActualizado).subscribe({
+      next: () => this.loadCourses(),
+    })
   }
 
   deleteCourseById(id: number): void {
-    this.courses$.pipe(take(1)).subscribe({
-      next: (arrayActual) => {
-        this._courses$.next(arrayActual.filter((c) => c.id !== id));
-      },
-    });
+    this.httpClient.delete(environment.baseApiUrl + '/courses/' + id)
+      .pipe().subscribe({
+        next: () => this.loadCourses(),
+      })
   }
 
 }

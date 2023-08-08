@@ -4,9 +4,13 @@
     Crear Curso
   </button>
 </div>
-
-<app-courses-table
+<div *ngIf="isLoading$ | async; else notLoadingTemplate">
+  Esta cargando
+</div>
+<ng-template #notLoadingTemplate>
+  <app-courses-table
   [dataSource]="(courses | async) || []"
   (deleteCourse)="onDeleteCourse($event)"
   (editCourse)="onEditCourse($event)"
 ></app-courses-table>
+</ng-template>

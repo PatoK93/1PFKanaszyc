@@ -12,6 +12,7 @@ import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { CoursesModule } from './pages/courses/courses.module';
 import { TeachersModule } from './pages/teachers/teachers.module';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TeachersModule } from './pages/teachers/teachers.module';
     RouterModule,
     StudentsModule,
     CoursesModule,
-    TeachersModule
+    TeachersModule,
+    DashboardRoutingModule
   ],
   exports: [
     DashboardComponent
