@@ -21,7 +21,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     HttpClientModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

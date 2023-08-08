@@ -13,4 +13,5 @@ export class NavMenuComponent {
   logout(): void {
     this.router.navigate(['auth', 'login'], {})
   }
+  
 }

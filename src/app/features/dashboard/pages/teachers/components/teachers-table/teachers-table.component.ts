@@ -18,4 +18,5 @@ export class TeachersTableComponent {
 
   @Output()
   editTeacher = new EventEmitter<Teacher>();
+  
 }

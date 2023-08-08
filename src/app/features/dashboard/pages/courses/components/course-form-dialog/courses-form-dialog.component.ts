@@ -35,4 +35,5 @@ export class CoursesFormDialogComponent {
       this.dialogRef.close(this.courseForm.value);
     }
   }
+  
 }

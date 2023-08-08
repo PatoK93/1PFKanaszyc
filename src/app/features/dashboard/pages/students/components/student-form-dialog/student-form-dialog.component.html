@@ -28,7 +28,7 @@
     <div class="col-6 field">
       <mat-form-field class="w-full" appearance="outline">
         <mat-label>Edad</mat-label>
-        <input formControlName="age" matInput type="number" name="age" title="Edad" required=""//>
+        <input formControlName="age" matInput type="number" name="age" title="Edad" required=""/>
         <mat-error *ngFor="let error of ageControl.errors | keyvalue">
           {{ error | controlErrorMessage }}
         </mat-error>

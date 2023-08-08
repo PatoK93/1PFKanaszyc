@@ -4,7 +4,6 @@
     Crear Profesor
   </button>
 </div>
-
 <app-teachers-table
   [dataSource]="(teachers | async) || []"
   (deleteTeacher)="onDeleteTeacher($event)"

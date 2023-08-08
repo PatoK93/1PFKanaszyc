@@ -46,4 +46,5 @@ export class TeacherFormDialogComponent {
       this.dialogRef.close(this.teacherForm.value);
     }
   }
+  
 }

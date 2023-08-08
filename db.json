@@ -1,11 +1,37 @@
 {
   "users": [
     {
-      "name": "Patriciooo",
-      "surname": "Kanaszycc",
-      "email": "pkanaszycc@email.com",
+      "name": "Patricio",
+      "surname": "Kanaszyc",
+      "email": "pkanaszyc@email.com",
       "password": "123456789",
       "token": "dasdasdasdasd",
+      "id": 1
+    }
+  ],
+  "students": [
+    {
+      "name": "Juan",
+      "surname": "Gimenez",
+      "age": 30,
+      "email": "jgimenez@email.com",
+      "password": "123456789",
+      "id": 1
+    }
+  ],
+  "teachers": [
+    {
+      "name": "Marcelo",
+      "surname": "Martinez",
+      "age": 30,
+      "email": "mmartinez@email.com",
+      "password": "123456789",
+      "id": 1
+    }
+  ],
+  "courses": [
+    {
+      "courseName": "Biologia",
       "id": 1
     }
   ]

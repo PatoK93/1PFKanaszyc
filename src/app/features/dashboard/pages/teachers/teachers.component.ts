@@ -67,4 +67,5 @@ export class TeachersComponent implements OnDestroy {
         },
       });
   }
+  
 }

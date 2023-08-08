@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { AuthService } from 'src/app/auth/auth.services';
-import { User } from '../../pages/users/models/user.model';
+import { AuthService } from '../../../auth/auth.services';
+import { User } from '../../../auth/models/login.model';
 import { Observable } from 'rxjs';
 
 @Component({

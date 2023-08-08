@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
-import { LoginPayload } from "./models/login.model";
+import { LoginPayload, User } from "./models/login.model";
 import { BehaviorSubject, Observable, map} from "rxjs";
-import { User } from "../dashboard/pages/users/models/user.model";
-import { NotifierService } from "../core/services/notifier.service";
+import { NotifierService } from "../../core/services/notifier.service";
 import { Router } from "@angular/router";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 

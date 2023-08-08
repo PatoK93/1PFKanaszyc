@@ -20,12 +20,11 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   login(): void {
-
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
     } else {
       this.authService.login(this.loginForm.getRawValue())
     }
-
   }
+  
 }
