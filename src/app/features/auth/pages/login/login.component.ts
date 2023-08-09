@@ -9,8 +9,8 @@ import { AuthService } from '../../auth.services';
 })
 export class LoginComponent {
 
-  public emailControl = new FormControl(null, [Validators.required, Validators.email, Validators.maxLength(30)]);
-  public passwordControl = new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(30)]);
+  public emailControl = new FormControl('fakeemail@fake.com', [Validators.required, Validators.email, Validators.maxLength(30)]);
+  public passwordControl = new FormControl('123456789', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]);
 
   public loginForm = new FormGroup({
     email: this.emailControl,
