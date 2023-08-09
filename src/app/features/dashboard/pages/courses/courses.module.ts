@@ -5,10 +5,11 @@ import { RouterModule } from '@angular/router';
 import { CoursesComponent } from './courses.component';
 import { CoursesTableComponent } from './components/courses-table/courses-table.component';
 import { CoursesFormDialogComponent } from './components/course-form-dialog/courses-form-dialog.component';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 @NgModule({
   declarations: [CoursesComponent, CoursesFormDialogComponent, CoursesTableComponent],
-  imports: [CommonModule, SharedModule, RouterModule],
+  imports: [CommonModule, SharedModule, RouterModule, CoursesRoutingModule],
   exports: [CoursesComponent],
   providers: [],
 })

@@ -11,15 +11,15 @@ import { HomeComponent } from "./pages/home/home.component";
       },
       {
         path: 'students',
-        loadChildren: () => import('./pages/students/students.module').then((m) => m.StudentsModule),
+        loadChildren: () => import('./pages/students/students.module').then((s) => s.StudentsModule),
       },
       {
         path: 'teachers',
-        loadChildren: () => import('./pages/teachers/teachers.module').then((m) => m.TeachersModule),
+        loadChildren: () => import('./pages/teachers/teachers.module').then((t) => t.TeachersModule),
       },
       {
         path: 'courses',
-        loadChildren: () => import('./pages/courses/courses.module').then((m) => m.CoursesModule),
+        loadChildren: () => import('./pages/courses/courses.module').then((c) => c.CoursesModule),
       },
       {
         path: '**',

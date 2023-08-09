@@ -22,6 +22,7 @@ export class TeacherService {
     this._isLoading$.next(true);
     this.httpClient.get<Teacher[]>(environment.baseApiUrl + '/teachers').subscribe({
       next: (response) => {
+        console.log(response);
         this._teacher$.next(response);
       },
       error: () => {

@@ -4,8 +4,13 @@
     Crear Profesor
   </button>
 </div>
-<app-teachers-table
+<div *ngIf="isLoading$ | async; else notLoadingTemplate">
+  Esta cargando
+</div>
+<ng-template #notLoadingTemplate>
+  <app-teachers-table
   [dataSource]="(teachers | async) || []"
   (deleteTeacher)="onDeleteTeacher($event)"
   (editTeacher)="onEditTeacher($event)"
 ></app-teachers-table>
+</ng-template>

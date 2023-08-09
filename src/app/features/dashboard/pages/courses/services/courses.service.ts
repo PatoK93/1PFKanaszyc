@@ -45,8 +45,7 @@ export class CoursesService {
   }
 
   createCourse(payload: CreateCourseData): void {
-    const token = generateRandomString(20);
-    this.httpClient.post<Course>(environment.baseApiUrl  + '/courses', { ...payload, token })
+    this.httpClient.post<Course>(environment.baseApiUrl  + '/courses', { ...payload})
       .pipe(
         mergeMap((courseCreate) => this.courses$.pipe(
           take(1),
