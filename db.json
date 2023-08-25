@@ -6,7 +6,17 @@
       "email": "pkanaszyc@email.com",
       "password": "123456789",
       "token": "dasdasdasdasd",
+      "role": "ADMINISTRADOR",
       "id": 1
+    },
+    {
+      "name": "test",
+      "surname": "test",
+      "email": "test@mail.com",
+      "password": "123456789",
+      "role": "USUARIO",
+      "token": "bG1Ptx4ZztwJwAoyjxQH",
+      "id": 2
     }
   ],
   "students": [
@@ -16,16 +26,6 @@
       "age": 19,
       "email": "pato_.20@hotmail.com",
       "password": "123434343434434",
-      "id": 1
-    }
-  ],
-  "teachers": [
-    {
-      "name": "aadsdsdsdsdsdsdsdsdsdsdsdsdsd",
-      "surname": "sdsdsdsdsdsdsdsdsdadadadadasd",
-      "age": 50,
-      "email": "pato_.20@hotmail.com",
-      "password": "13232323232323",
       "id": 1
     }
   ],

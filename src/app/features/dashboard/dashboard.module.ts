@@ -11,8 +11,8 @@ import { MatListModule } from '@angular/material/list';
 import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { CoursesModule } from './pages/courses/courses.module';
-import { TeachersModule } from './pages/teachers/teachers.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { UsersModule } from './pages/users/users.module';
 
 @NgModule({
   declarations: [
@@ -30,8 +30,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     RouterModule,
     StudentsModule,
     CoursesModule,
-    TeachersModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    UsersModule,
   ],
   exports: [
     DashboardComponent

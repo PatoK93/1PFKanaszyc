@@ -7,6 +7,7 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
 import { MatCardModule } from '@angular/material/card';
 import { AuthModule } from './features/auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthModule,
     MatCardModule,
     HttpClientModule,
+    StoreModule.forRoot({}, {}),
   ],
   bootstrap: [AppComponent]
 })

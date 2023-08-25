@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { HomeComponent } from "./pages/home/home.component";
+import { adminGuard } from '../../core/guards/admin.guard';
 
 @NgModule({
   imports: [
@@ -10,12 +11,14 @@ import { HomeComponent } from "./pages/home/home.component";
         component: HomeComponent,
       },
       {
-        path: 'students',
-        loadChildren: () => import('./pages/students/students.module').then((s) => s.StudentsModule),
+        path: 'users',
+        canActivate: [adminGuard],
+        loadChildren: () =>
+          import('./pages/users/users.module').then((m) => m.UsersModule),
       },
       {
-        path: 'teachers',
-        loadChildren: () => import('./pages/teachers/teachers.module').then((t) => t.TeachersModule),
+        path: 'students',
+        loadChildren: () => import('./pages/students/students.module').then((s) => s.StudentsModule),
       },
       {
         path: 'courses',

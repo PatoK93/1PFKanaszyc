@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AuthService } from '../../../auth/auth.services';
+import { selectIsAdmin } from '../../../../store/auth/auth.selectors';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,9 +12,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NavMenuComponent {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  public selectIsAdmin$: Observable<boolean>;
+
+  constructor(private router: Router,
+    private authService: AuthService,
+    private store: Store) {
+      this.selectIsAdmin$ = this.store.select(selectIsAdmin);
+    }
 
   logout(): void {
+    this.authService.logout();
     this.router.navigate(['auth', 'login'], {})
   }
   

@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TeachersComponent } from './teachers.component';
+import { UsersComponent } from './users.component';
 
 @NgModule({
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
-        component: TeachersComponent,
+        component: UsersComponent,
       }
     ])
   ],
   exports: [RouterModule],
 })
-export class TeachersRoutingModule { }
+export class UsersRoutingModule { }

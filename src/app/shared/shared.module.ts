@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { ControlErrorMessagePipe } from './pipes/control-error-message.pipe';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ControlErrorMessagePipe } from './pipes/control-error-message.pipe';
     ReactiveFormsModule,
     MatTableModule,
     FullNamePipe,
-    ControlErrorMessagePipe
+    ControlErrorMessagePipe,
+    MatSelectModule,
+    MatProgressBarModule,
   ]
 })
 export class SharedModule { }

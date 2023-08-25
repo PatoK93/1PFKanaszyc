@@ -1,0 +1,5 @@
+1) Agregar en el toolbar la pestaña en la que se esta parado.
+2) Agregar modulo de inscripciones.
+3) Agregar detalles de estudiantes y cursos. En casa estudiante y curso, se deberia poder clickear y que se muestren o sus cursos o sus estudiantes inscriptos.
+4) Cambiar nombre a la carpeta del TP.
+5) Deployar.
