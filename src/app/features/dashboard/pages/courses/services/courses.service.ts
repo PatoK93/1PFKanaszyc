@@ -3,7 +3,6 @@ import { CreateCourseData, Course, UpdateCourseData } from '../models/course.mod
 import { BehaviorSubject, Observable, map, mergeMap, take } from 'rxjs';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { HttpClient } from '@angular/common/http';
-import { generateRandomString } from '../../../../../shared/utils/helpers';
 import { environment } from '../../../../../../../src/environments/environment';
 
 @Injectable({
@@ -71,6 +70,10 @@ export class CoursesService {
       .pipe().subscribe({
         next: () => this.loadCourses(),
       })
+  }
+
+  getCoursesByStudentId(studentId: number): Observable<Student[]> {
+    return this.http.get<Student[]>(environment.baseApiUrl + `/courses?studentId=${studentId}`)
   }
 
 }

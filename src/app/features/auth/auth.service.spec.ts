@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from "@angular/common/
 import { TestBed } from "@angular/core/testing"
 import { RouterTestingModule } from "@angular/router/testing"
 import { AuthService } from "./auth.services"
-import { User } from "../../features/auth/models/login.model"
+import { User } from "../../features/dashboard/pages/users/models/user.model"
 import { Router } from "@angular/router"
 import { MockProvider } from 'ng-mocks';
 
@@ -35,6 +35,7 @@ describe('AuthService', () => {
       name: 'FAKE',
       surname: 'USER',
       token: 'skj3kjsdiamsdasj',
+      role: 'ADMINISTRADOR'
     }
 
     const mockResponse: User[] = [mockUser];

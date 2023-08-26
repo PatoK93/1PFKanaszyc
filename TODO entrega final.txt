@@ -1,3 +1,5 @@
-1) Agregar modulo de inscripciones.
-2) Agregar detalle de estudiantes y cursos. En cada estudiante y curso, se deberia poder clickear y que se muestren o sus cursos o sus estudiantes inscriptos respectivamente.
-3) Deployar.
+1) Agregar detalle de students y courses. En cada student y course, se deberia poder clickear y que se muestren o sus courses o sus students inscriptos respectivamente.
+2) Probar que funcione el guard de users respecto al rol ADMINISTRADOR.
+3) Probar que se deshabiliten los controles necesarios para el rol USUARIO.
+4) Probar el correcto funcionamiento de NGRX en auth, users, inscriptions.
+5) Deployar.

@@ -6,10 +6,16 @@ import { StudentFormDialogComponent } from './components/student-form-dialog/stu
 import { StudentsTableComponent } from './components/students-table/students-table.component';
 import { RouterModule } from '@angular/router';
 import { StudentsRoutingModule } from './students-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StudentsEffects } from './store/students.effects';
+import { studentsFeature } from './store/students.reducer';
 
 @NgModule({
   declarations: [StudentsComponent, StudentFormDialogComponent, StudentsTableComponent],
-  imports: [CommonModule, SharedModule, RouterModule, StudentsRoutingModule],
+  imports: [CommonModule, SharedModule, RouterModule, StudentsRoutingModule,
+    StoreModule.forFeature(studentsFeature),
+    EffectsModule.forFeature([StudentsEffects]],
   exports: [StudentsComponent],
 })
 export class StudentsModule {}

@@ -3,7 +3,7 @@
     {
       "name": "Patricio",
       "surname": "Kanaszyc",
-      "email": "pkanaszyc@email.com",
+      "email": "pkanaszyc@mail.com",
       "password": "123456789",
       "token": "dasdasdasdasd",
       "role": "ADMINISTRADOR",
@@ -21,18 +21,47 @@
   ],
   "students": [
     {
-      "name": "Patriciowewewewewewewewewe",
-      "surname": "weweweweweweweweweweweewewe",
-      "age": 19,
+      "name": "Patricio",
+      "surname": "Kanaszyc",
+      "age": 30,
       "email": "pato_.20@hotmail.com",
-      "password": "123434343434434",
+      "password": "123456789",
       "id": 1
+    },
+    {
+      "name": "Juan",
+      "surname": "Perez",
+      "age": 20,
+      "email": "jperez@mail.com",
+      "password": "123456789",
+      "id": 2
     }
   ],
   "courses": [
     {
-      "courseName": "dwdwdwd",
+      "courseName": "Biologia",
       "id": 1
+    },
+    {
+      "courseName": "Matematica",
+      "id": 2
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "studentId": 1
+    },
+    {
+      "id": 2,
+      "courseId": 1,
+      "studentId": 2
+    },
+    {
+      "id": 3,
+      "courseId": 2,
+      "studentId": 1
     }
   ]
 }
